@@ -9,7 +9,7 @@ class Catalog extends React.PureComponent {
           lot: 1,
           activ: "unit--select unit--active",
           activ2: "unit--select",
-    
+        
         }
        
       }; 
@@ -28,12 +28,13 @@ class Catalog extends React.PureComponent {
         this.setState({activ2: "unit--select unit--active" });
         this.setState({activ: "unit--select"});
     }
-    sum = (event)=>{
-        console.log(event.target.lot);
+    
+    sum = (e)=>{
+        console.log(e);
         this.setState({lot:this.state.lot+1})
      
     };
-    sum2 = (event)=>{
+    sum2 = (event, id)=>{
         console.log(event.target.lot);
         if(this.state.lot>0)
         this.setState({lot:this.state.lot-1})
@@ -41,11 +42,10 @@ class Catalog extends React.PureComponent {
     }
     render() {
         const {data} = this.props;
-
         return (
           <main className="grid container">
           {data.map((el)=> 
-              <div className="sub_category_page">
+              <div className="sub_category_page" id={el.productId} ref={el.productId}>
                   <div className="column_right column_right_products_container">
                       <div className="product__area">  
                           <div id="products_section">
@@ -124,7 +124,7 @@ class Catalog extends React.PureComponent {
                                               <svg className="ic_cart">
                                               <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#cart"></use>
                                               </svg>
-                                              <span className="ng-binding" data-product-id={el.productId}>В корзину</span>
+                                              <span className="ng-binding">В корзину</span>
                                           </span>
                                           </div>
                                       </div>
